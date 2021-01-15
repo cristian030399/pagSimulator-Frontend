@@ -9,7 +9,7 @@
                     [(ngModel)]="inputSimulator.addresses" #addresses [disabled]="cadenaRandom!=1"
                     (keypress)="valideKey($event)" (keypress)="validFormat($event)">
                 <div class="invalid-feedback d-block" *ngIf="!cadenaValida">
-                    Please choose a username.
+                    Cadena no válida.
                 </div>
 
             </div>
@@ -35,12 +35,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- <div class="form-group contenedor-cadenaInput">
-                <label for="cadena-acceso">Cadena de accesos aleatoria</label>
-                <textarea name="cadena-acceso" id="cadena-acceso" class="form-control" rows="5" cols="50"
-                    [(ngModel)]="inputSimulator.addresses" #addresses></textarea>
-            </div> -->
         </label>
         <div class="form-row">
             <div class="form-group col-md-4">
