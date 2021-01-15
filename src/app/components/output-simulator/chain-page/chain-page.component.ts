@@ -17,7 +17,6 @@ export class ChainPageComponent implements OnInit, OnDestroy {
   constructor(private pagSimulatorAPIService: PagSimulatorAPIService) { }  
 
   ngOnInit(): void {
-    console.log(this.elemento);
     this.pasoSuscription = this.pagSimulatorAPIService.step$.subscribe(step => this.paso = step);
   }
 

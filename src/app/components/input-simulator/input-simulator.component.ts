@@ -29,13 +29,10 @@ export class InputSimulatorComponent implements OnInit {
   }
 
   simular() {
-    // console.log(this.inputSimulator);
     this.verificarValores();
     this.pagSimulatorAPIService.pagingPolicy(this.inputSimulatorFinal).subscribe(data => {
       this.pagSimulatorAPIService.result$.emit(data)
-      // console.log(data);
     });
-    console.log(this.inputSimulatorFinal);
   }
 
   verificarValores() {
@@ -78,10 +75,8 @@ export class InputSimulatorComponent implements OnInit {
     const inputChar = this.inputSimulator.addresses + evt.key;
     if (!pattern.test(inputChar)) {
       this.cadenaValida = false;
-      console.log(inputChar, "no Valido")
     } else {
       this.cadenaValida = true;
-      console.log(inputChar, "Valido")
     }
   }
 
@@ -91,16 +86,6 @@ export class InputSimulatorComponent implements OnInit {
       return false;
     }
     return true;
-  }
-
-
-  verValores() {
-    console.log(this.inputSimulator);
-    console.log(this.inputSimulator.policy != '' && this.inputSimulator.cachesize > 0);
-    console.log(!((this.cadenaValida && this.cadenaRandom == 1) || ((this.inputSimulator.numaddrs > 0 && this.inputSimulator.maxpage > 0) && this.cadenaRandom == 2)) || !(this.inputSimulator.policy != '' && this.inputSimulator.cachesize > 0));
-    
-  }
-
-  
+  }  
 
 }
