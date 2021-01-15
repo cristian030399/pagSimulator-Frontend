@@ -1,0 +1,67 @@
+<div class="ingreso">
+    <form>
+        <input class="radio-tipoCadena" type="radio" name="tipoCadena" id="tipoCadena1" [(ngModel)]="cadenaRandom"
+            [value]="1">
+        <label class="label-container mb-2" for="tipoCadena1">
+            <div class="form-group contenedor-cadenaInput">
+                <label for="cadena-acceso">Ingrese cadena de accesos</label>
+                <input name="cadena-acceso" id="cadena-acceso" class="form-control" rows="5" cols="50"
+                    [(ngModel)]="inputSimulator.addresses" #addresses [disabled]="cadenaRandom!=1"
+                    (keypress)="valideKey($event)" (keypress)="validFormat($event)">
+                <div class="invalid-feedback d-block" *ngIf="!cadenaValida">
+                    Please choose a username.
+                </div>
+
+            </div>
+        </label>
+        <input class="radio-tipoCadena" type="radio" name="tipoCadena" id="tipoCadena2" [(ngModel)]="cadenaRandom"
+            [value]="2">
+
+        <label class="label-container" for="tipoCadena2">
+
+            <div class=" form-group contenedor-cadenaInput">
+                Cadena de accesos aleatoria
+
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="numaddrs">Número de accesos</label>
+                        <input type="number" class="form-control" id="numaddrs" [(ngModel)]="inputSimulator.numaddrs"
+                            name="numaddrs" #numaddrs [disabled]="cadenaRandom!=2" (keypress)="justNumber($event)">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="maxpage">Maxpages</label>
+                        <input type="number" class="form-control" id="maxpage" [(ngModel)]="inputSimulator.maxpage"
+                            name="maxpage" #maxpage [disabled]="cadenaRandom!=2" (keypress)="justNumber($event)">
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="form-group contenedor-cadenaInput">
+                <label for="cadena-acceso">Cadena de accesos aleatoria</label>
+                <textarea name="cadena-acceso" id="cadena-acceso" class="form-control" rows="5" cols="50"
+                    [(ngModel)]="inputSimulator.addresses" #addresses></textarea>
+            </div> -->
+        </label>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="politica">Seleccione política de reemplazo</label>
+                <select id="politica" class="form-control" [(ngModel)]="inputSimulator.policy" name="policy" #policy>
+                    <option value=""></option>
+                    <option value="FIFO">FIFO</option>
+                    <option value="LRU">LRU</option>
+                    <option value="MRU">MRU</option>
+                    <option value="OPT">OPT</option>
+                    <option value="UNOPT">UNOPT</option>
+                    <option value="RAND">RAND</option>
+                </select>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="cache">Tamaño de caché</label>
+                <input type="number" class="form-control" id="cache" [(ngModel)]="inputSimulator.cachesize"
+                    name="cachesize" #cachesize (keypress)="justNumber($event)">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-light" (click)="simular()"
+            [disabled]="!((cadenaValida && cadenaRandom == 1 && inputSimulator.addresses != '') || ((inputSimulator.numaddrs > 0 && inputSimulator.maxpage > 0) && cadenaRandom == 2)) || !(inputSimulator.policy != '' && inputSimulator.cachesize > 0)">Simular</button>
+    </form>
+</div>

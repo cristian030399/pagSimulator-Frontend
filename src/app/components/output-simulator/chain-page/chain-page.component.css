@@ -1,0 +1,26 @@
+.contenedor-cadena__elemento {
+    text-align: center;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.contenedor-cadena__elemento:hover {
+    box-shadow: 0px 0px 10px black;
+    transform: scale(1.05);
+}
+
+.contenedor-cadena__elemento.bg-success {
+    background-color: rgba(40, 167, 69, 0.4) !important;
+    border-color: #28a745!important;
+}
+
+.contenedor-cadena__elemento.bg-danger {
+    background-color: rgba(220, 53, 69, 0.4) !important;
+    border-color: #dc3545!important;
+}
+
+.contenedor-cadena__elemento.bg-white {
+    color: #212529!important;
+}

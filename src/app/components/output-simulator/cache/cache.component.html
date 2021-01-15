@@ -1,0 +1,13 @@
+<div class="tabla-cache d-flex align-items-center flex-wrap text-body">
+    <div *ngFor = "let cPage of cacheMemori(cacheSize); let i = index;" class="tabla-cache__elemento border bg-white ">
+        {{cache.length < i ? cPage : cache[i]}}
+    </div>
+</div>
+<div class="container-fluid mt-3 p-0">
+    <div class="victima d-flex flex-wrap">
+        <p class="m-0">Página reemplazada: </p>
+        <div  class="tabla-cache__elemento border bg-white text-body ml-2">
+            {{victima}}
+        </div>
+    </div>
+</div>

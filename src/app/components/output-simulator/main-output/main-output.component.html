@@ -1,0 +1,42 @@
+<div class="resultado" *ngIf="!resultadoIsEmpty">
+    <h2 class="text-center">Resultado Simulacion</h2>
+    <div class="container-fluid">
+        <p class="mb-0">Cadena de accesos</p>
+        <div class="contenedor-cadena d-flex align-items-center flex-wrap">
+            <app-chain-page *ngFor="let element of resultado.steps; let id = index;" [elemento]="{access: element.access, response: element.response, idx: id}" (click)="changePaso(id+1)"></app-chain-page>
+        </div>
+    </div>
+
+    <div class="container-fluid d-flex flex-wrap mt-3">
+        <div class="politica">
+            <p class="m-0">Política de reemplazo: <span>{{resultado.options.policy}}</span></p>
+        </div>
+    </div>
+
+    <div class="container-fluid mt-2">
+        <p class="mb-0">Caché</p>
+        <app-cache [victima]="paso-1 == -1 ? '' : resultado.steps[paso-1].victim" [cache]="paso-1 == -1 ? [] : resultado.steps[paso-1].memory" [cacheSize]="resultado.options.cachesize"></app-cache>
+    </div>
+
+    <div class="container-fluid d-flex flex-wrap mt-3">
+        <div class="aciertos mr-5">
+            <p>Aciertos: <span id="total-aciertos">{{paso-1 == -1 ? 0 : resultado.steps[paso-1].hits}}</span></p>
+        </div>
+        <div class="fallos">
+            <p>Fallos: <span id="total-fallos">{{paso-1 == -1 ? 0 : resultado.steps[paso-1].miss}}</span></p>
+        </div>
+    </div>
+
+    <div class="container-fluid d-flex flex-wrap justify-content-end">
+        <button class="btn btn-outline-light mx-2" [disabled]="paso == 0" (click)="changePaso(paso-1)">
+            Paso anterior
+        </button>
+        <button class="btn btn-outline-light mx-2" [disabled]="paso == resultado.steps.length" (click)="changePaso(paso+1)">
+            Paso siguiente
+        </button>
+        <button class="btn btn-light mx-2" (click)="changePaso(0)">
+            Volver a empezar
+        </button>
+
+    </div>
+</div>
